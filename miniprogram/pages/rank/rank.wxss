@@ -1,0 +1,73 @@
+/* pages/rank/rank.wxss巅峰榜 */
+.title{
+  font-weight: 600;
+  font-size: 35rpx;
+  padding: 0 0 0 30rpx;
+}
+.bink{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 20rpx 30rpx 20rpx 12rpx;
+
+}
+.bink-square{
+  position: relative;
+  width: 100%;
+  margin: 20rpx 20rpx 0rpx 10rpx;
+  padding: 10rpx 10rpx 0 10rpx;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+  align-items: center;
+  border-radius: 5px;
+}
+.gedan{
+  width: 65%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding: 0 0 10rpx 0;
+}
+.sings{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 20rpx 0 0 20rpx;
+}
+.sings text:nth-child(1){
+  font-size: 28rpx;
+  white-space: nowrap;
+}
+.sings text:nth-child(2){
+  font-size: 26rpx;
+  color: #888;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* 子标题 */
+.small-title{
+  padding: 0 0 0 16rpx;
+  font-weight: 550;
+}
+/* 播放图标 */
+.listenCount{
+  position: absolute;
+  bottom: 15rpx;
+  right: 20rpx;
+  z-index: 20;
+  color: #fff;
+  font-size: 24rpx;
+  background-color: #555555;
+  opacity: 0.8;
+  padding: 4rpx 6rpx 4rpx 6rpx;
+  border-radius: 10rpx;
+  display: flex;
+  align-items: center;
+}
+.listenCount image{
+  width: 24rpx;
+  height: 24rpx;
+}

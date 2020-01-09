@@ -1,0 +1,61 @@
+<!--pages/music/musicPlay.wxml-->
+<!-- audio.wxml -->
+<view class="topbar" style="padding-top:{{statusBarHeight}}rpx"></view>
+<image bindtap="back" src="../../images/back.png" style="position:fixed;top:{{statusBarHeight+18}}rpx;left:36rpx;width:60rpx;height:60rpx"></image>
+<view class="container">
+  <image class="bgcAun" src="{{alumnUrl}}"></image>
+  <image class="bgcHui"></image>
+  <view style="padding-top:{{statusBarHeight+20}}rpx"></view>
+  <text class="name">{{albumname}}</text>
+  <view style="width:50%">
+    <van-divider contentPosition="center" customStyle="color: #fff;border-color: #eee;font-size: 30rpx;">{{name}}</van-divider>
+  </view>
+  <view class="roundImg">
+    <image src="{{alumnUrl}}" class=" {{on? 'on':''}}"></image>
+  </view>
+  <!-- <view class="timerJindu">
+    <text>{{drt}}</text>
+    <view class="jindu"></view>
+    <text>{{totalTime}}</text>
+  </view> -->
+  <view class="playMusic">
+    <view class="{{on?'play':'paused'}}"></view>
+    <view class="btn">
+      <image src="../../images/firstplay.png"></image>
+      <image src="../../images/prev.png"></image>
+      <image bindtap="playMusic" src="{{on?'../../images/paused.png':'../../images/played.png'}}"></image>
+      <image src="../../images/next.png"></image>
+      <image src="../../images/playlist.png" bindtap="showPopup"></image>
+    </view>
+  </view>
+  <!-- 播放列表弹出层 -->
+  <van-popup show="{{ show }}" round position="bottom" custom-style="height: 60%" bind:close="onClose"  style="positon:relative;top:0"> 
+    <view class="popup">
+      <image src="../../images/lists.png"></image>
+      <text>列表循环({{playList.length}})</text>
+      <image src="../../images/clear.png"></image>
+    </view>
+    <van-divider />
+    <view>123</view>
+    <view>123</view>
+    <view>123</view>
+    <view>123</view>
+    <view>123</view>
+    <view>123</view>
+    <view>123</view>
+    <view>123</view>
+    <view>123</view>
+    <view>123</view>
+    <view>123</view>
+    <view>123</view>
+    <view>123</view>
+    <view>123</view>
+    <view>123</view>
+    <view>123</view>
+    <view>123</view>
+    <view>123</view>
+    <view>123</view>
+    <view>123</view>
+    <view>123</view>
+  </van-popup>
+</view>

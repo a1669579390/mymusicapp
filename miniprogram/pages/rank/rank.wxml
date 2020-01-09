@@ -1,0 +1,28 @@
+<view>
+  <text class="title">巅峰榜</text>
+  <view class="bink">
+    <block wx:for="{{rankList}}" wx:key="index">
+      <view class="bink-square" data-imgurl="{{item.picUrl}}" data-id="{{item.id}}" bindtap="toRank">
+      <view class="gedan">
+        <text class="small-title">{{hotRank[index]}}</text>
+          <block wx:for="{{item.songList}}" wx:key="index">
+          <view class="sings">      
+            <text>{{item.songname}}-</text> 
+            <text> {{item.singername}}</text>
+          </view>
+          </block>
+      </view>
+        <view class="listenCount">
+        <image src="../../images/play.png"></image>
+        {{listenCount[index]}}
+        </view>    
+      <van-image
+          width="220rpx"
+          height="220rpx"
+          radius="10rpx"
+          src="{{item.picUrl}}"
+        ></van-image>       
+      </view>
+    </block>
+  </view>
+</view>

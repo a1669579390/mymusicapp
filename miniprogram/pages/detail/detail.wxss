@@ -1,0 +1,79 @@
+/* pages/detail/detail.wxss */
+.imgstyle{
+  text-align: center;
+  padding: 26rpx 0 0 0;
+}
+
+.imgsize{
+  width: 48rpx;
+  height: 48rpx;
+  padding: 8rpx 0 0 0;
+}
+.button-size button:not([size='mini']){
+  width: 370rpx;
+  min-height: 80rpx;
+  height: 80rpx;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+.listName{
+  display: flex;
+  justify-content: space-around;
+  font-size: 32rpx;
+  padding: 20rpx 0 0 0;
+}
+.update-time{
+  display: flex;
+  justify-content: space-around;
+  padding: 20rpx 0 30rpx 0;
+  color: #666;
+  font-size: 30rpx;
+}
+.total_song{
+  display: flex;
+  justify-content: flex-start;
+  font-size: 26rpx;
+  color: #666;
+  padding: 30rpx 0 0 30rpx;
+}
+.music-list{
+  display: flex;
+  flex-direction: column;
+  padding: 0 12rpx 0 0rpx;
+}
+.list-01{
+  display: flex;
+  /* justify-content: space-between; */
+  padding: 12rpx;
+}
+.list-01 view:nth-child(1){
+  width: 40rpx;
+  padding: 14rpx;
+  font-size: 38rpx;
+  text-align: center;
+}
+.list-02{
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 0 16rpx;
+  width: 82%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.list-02 text:nth-child(1){
+  font-size: 30rpx;
+  padding: 6rpx 0 0 6rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.list-02 text:nth-child(2){
+  font-size: 24rpx;
+  padding: 6rpx 0 0 6rpx;
+  color: #555;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

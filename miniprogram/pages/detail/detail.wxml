@@ -1,0 +1,32 @@
+<!-- 接收参数 -->
+<view wx:if="{{list.length!=0}}">
+  <view class="imgstyle">
+   <van-image
+      width="390rpx"
+      height="390rpx"
+      radius="40rpx"
+      src="{{imgUrl}}"
+    ></van-image>
+    <text class="listName">{{list.topinfo.ListName}}</text>
+    <text class="update-time">更新时间:{{list.update_time}}</text>
+    <view class="button-size">
+      <van-button round color="linear-gradient(to right, #4bb0ff, #6149f6)" bind:click="playAll">
+        <image src="../../images/play.png" class="imgsize"></image>
+      </van-button>
+    </view>
+    <text class="total_song">排行榜 共{{list.total_song_num}}首</text>
+  </view>
+  <van-toast id="van-toast"/>
+  <!-- 获取到的歌曲列表 -->
+  <view class="music-list">
+   <block wx:for="{{list.songlist}}" wx:key="index">
+      <view class="list-01" data-smm="{{item.data.strMediaMid}}" data-mid="{{item.data.songmid}}" data-alumn="{{item.data.albummid}}" data-albumname="{{item.data.songname}}" data-name="{{item.data.singer[0].name}}" bindtap="toPlay">
+        <view>{{index+1}}</view>
+        <view class="list-02">        
+          <text style="color:{{musicmid==item.data.songmid? '#4bb0ff':''}}">{{item.data.songname}}</text>
+          <text style="color:{{musicmid==item.data.songmid? '#4bb0ff':''}}">{{item.data.singer[0].name}}</text>
+        </view>
+      </view>
+   </block>
+  </view>
+</view>

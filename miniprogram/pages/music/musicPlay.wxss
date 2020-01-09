@@ -1,0 +1,118 @@
+/* pages/music/musicPlay.wxss */
+.container{
+  width: 100%;
+  height: 100vh;
+}
+.topbar {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  background-color:transparent;
+}
+/* 最下面的背景图 */
+.bgcAun{
+  position: absolute;
+  z-index: -2;
+  width: 100%;
+  height: 100vh;
+  /* background-repeat:no-repeat; */
+  background-size:700%;
+  filter:blur(10px);
+}
+/* 灰色背景图 */
+.bgcHui{
+  position: absolute;
+  z-index: -1;
+  background-color: #000;
+  opacity: 0.7;
+  width: 100%;
+  height: 100vh;
+}
+.roundImg{
+  display: flex;
+  justify-content: space-around;
+  padding: 20rpx 0 0 0;
+}
+.roundImg image{
+  width: 560rpx;
+  height: 560rpx;
+  border-radius: 50%;
+  border: 14rpx solid #333;
+}
+/* 歌手名 */
+.name{
+  color: #fff;
+  text-align: center;
+  padding: 40rpx 0 0 0;
+  font-size: 34rpx;
+}
+/*控制图片旋转*/
+.on{
+  animation: rotating 33s linear infinite;
+}
+@keyframes rotating{
+  from{transform: rotate(0)}
+  to{transform: rotate(360deg)}
+}
+/* 进度条样式 */
+.timerJindu{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 30rpx 0 60rpx 0;
+}
+.timerJindu .jindu{
+  width: 500rpx;
+  height: 6rpx;
+  background-color: #fff;
+  margin: 0 30rpx 0 30rpx
+}
+.timerJindu text{
+  color: #ddd;
+}
+/* 音乐图标按钮样式 */
+.playMusic{
+  width: 94%;
+  display: flex;
+  justify-content: space-around;
+}
+.btn{
+ width: 98%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  bottom: 3%;
+}
+.btn image:nth-child(1),.btn image:nth-child(5){
+  width: 50rpx;
+  height: 50rpx;
+}
+.btn image:nth-child(3){
+  width: 110rpx;
+  height: 110rpx;
+}
+.btn image:nth-child(2),.btn image:nth-child(4){
+  width: 55rpx;
+  height: 55rpx;
+}
+.popup{
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 28rpx 0 0 0;
+}
+/*弹出层样式*/
+.popup image{
+  width: 40rpx;
+  height: 40rpx;
+  padding: 0 0 0 20rpx;
+}
+.popup text{
+  padding: 0rpx 0 0 10rpx;
+  font-size: 32rpx;
+}

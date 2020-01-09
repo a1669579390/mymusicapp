@@ -1,0 +1,10 @@
+{
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "van-image": "../../miniprogram_npm/@vant/weapp/image/index",
+    "van-divider": "../../miniprogram_npm/@vant/weapp/divider/index",
+      "van-popup": "../../miniprogram_npm/@vant/weapp/popup/index",
+      "van-sticky": "../../miniprogram_npm/@vant/weapp/sticky/index"
+  }
+}
