@@ -7,7 +7,7 @@
   <image class="bgcHui"></image>
   <view style="padding-top:{{statusBarHeight+20}}rpx"></view>
   <text class="name">{{albumname}}</text>
-  <view style="width:50%">
+  <view style="width:52%;overflow: hidden;white-space: nowrap;text-overflow: ellipsis">
     <van-divider contentPosition="center" customStyle="color: #fff;border-color: #eee;font-size: 30rpx;">{{name}}</van-divider>
   </view>
   <view class="roundImg">
@@ -29,33 +29,23 @@
     </view>
   </view>
   <!-- 播放列表弹出层 -->
-  <van-popup show="{{ show }}" round position="bottom" custom-style="height: 60%" bind:close="onClose"  style="positon:relative;top:0"> 
+  <van-popup show="{{ show }}" round position="bottom" custom-style="height: 60%" bind:close="onClose"> 
     <view class="popup">
       <image src="../../images/lists.png"></image>
       <text>列表循环({{playList.length}})</text>
       <image src="../../images/clear.png"></image>
     </view>
     <van-divider />
-    <view>123</view>
-    <view>123</view>
-    <view>123</view>
-    <view>123</view>
-    <view>123</view>
-    <view>123</view>
-    <view>123</view>
-    <view>123</view>
-    <view>123</view>
-    <view>123</view>
-    <view>123</view>
-    <view>123</view>
-    <view>123</view>
-    <view>123</view>
-    <view>123</view>
-    <view>123</view>
-    <view>123</view>
-    <view>123</view>
-    <view>123</view>
-    <view>123</view>
-    <view>123</view>
+    <view class="musicContainer">
+        <block wx:for="{{playList}}" wx:key="index">
+        <view class="lists">
+            <view class="musicName">
+              <text style="color:{{musicmid==item.data.songmid? '#4bb0ff':''}}">{{item.data.songname}}</text>
+              <text style="color:{{musicmid==item.data.songmid? '#4bb0ff':''}}">{{item.data.singer[0].name}}</text>           
+            </view>
+            <view class="close"><image src="../../images/close.png"></image></view>
+          </view>
+        </block>
+    </view>
   </van-popup>
 </view>

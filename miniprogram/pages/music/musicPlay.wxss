@@ -43,10 +43,14 @@
 }
 /* 歌手名 */
 .name{
+  width: 50%;
   color: #fff;
   text-align: center;
-  padding: 40rpx 0 0 0;
+  padding: 8rpx 0 0 0;
   font-size: 34rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 /*控制图片旋转*/
 .on{
@@ -100,19 +104,64 @@
 }
 .popup{
   position: fixed;
-  top: 0;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 28rpx 0 0 0;
+  margin: 0;
+  display: flex; 
+  width: 100%;
+  height: 80rpx;
+  border-radius: 40rpx 40rpx 0 0;
+  justify-content: space-between;
+  align-items: center; 
+  padding: 0 0 0 0; 
+  background-color: #fff;
 }
 /*弹出层样式*/
 .popup image{
   width: 40rpx;
   height: 40rpx;
-  padding: 0 0 0 20rpx;
+  padding: 0 40rpx 0 40rpx;
 }
 .popup text{
   padding: 0rpx 0 0 10rpx;
   font-size: 32rpx;
+}
+.musicContainer{
+  padding: 10rpx 0 0 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.lists{
+  display: flex;
+  justify-content: space-between;
+  padding: 10rpx 30rpx 10rpx 20rpx;
+  line-height: 34rpx;
+  width: 93%;
+  overflow: hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+.musicName{
+  width: 90%;
+  display: flex;
+  padding: 10rpx 10rpx 10rpx 0;
+  overflow: hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+.musicName text:nth-child(1){
+  font-size: 28rpx;
+  padding: 0 8rpx 0 0;
+  overflow: hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+.musicName text:nth-child(2){
+  font-size: 24rpx;
+  color: #555;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+.close image{
+  width: 30rpx;
+  height: 30rpx;
 }

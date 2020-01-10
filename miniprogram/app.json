@@ -1,9 +1,10 @@
 {
   "pages": [
-    "pages/music/musicPlay",
+
     "pages/index/index",
     "pages/rank/rank",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/music/musicPlay"
     
   ],
   "window": {

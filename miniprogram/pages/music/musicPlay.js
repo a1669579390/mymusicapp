@@ -107,9 +107,7 @@ Page({
       musicmid:mid,//歌曲唯一id
       playList:getApp().globalData.playList
     })
-    this.getVkey(mid)   
-    getApp().globalData.musicmid=mid;
-    
+    this.getVkey(mid)
   },
   //定义监听回调方法
   /**
