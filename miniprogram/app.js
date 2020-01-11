@@ -7,7 +7,7 @@ App({
     playList:[],//当前播放列表
     _musicmid:'',//当前播放音乐的mid
     palyIndex:0,//当前播放歌曲的index
-    mode:'multiple',
+    mode:'single',
     _name:"123"
   },
   getRank() {

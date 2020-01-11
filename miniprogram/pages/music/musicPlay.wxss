@@ -43,7 +43,7 @@
 }
 /* 歌手名 */
 .name{
-  width: 50%;
+  width: 44%;
   color: #fff;
   text-align: center;
   padding: 8rpx 0 0 0;

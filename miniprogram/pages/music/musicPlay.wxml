@@ -7,7 +7,7 @@
   <image class="bgcHui"></image>
   <view style="padding-top:{{statusBarHeight+20}}rpx"></view>
   <text class="name">{{albumname}}</text>
-  <view style="width:52%;overflow: hidden;white-space: nowrap;text-overflow: ellipsis">
+  <view style="width:40%;overflow: hidden;white-space: nowrap;text-overflow: ellipsis">
     <van-divider contentPosition="center" customStyle="color: #fff;border-color: #eee;font-size: 30rpx;">{{name}}</van-divider>
   </view>
   <view class="roundImg">
@@ -21,13 +21,14 @@
   <view class="playMusic">
     <view class="{{on?'play':'paused'}}"></view>
     <view class="btn">
-      <image src="../../images/firstplay.png"></image>
-      <image src="../../images/prev.png"></image>
+      <image bindtap="checked" src="{{mode=='single'?'../../images/firstplay.png':'../../images/loop.png'}}"></image>
+      <image src="../../images/prev.png" bindtap="onPrev"></image>
       <image bindtap="playMusic" src="{{on?'../../images/paused.png':'../../images/played.png'}}"></image>
-      <image src="../../images/next.png"></image>
+      <image src="../../images/next.png" bindtap="onNext"></image>
       <image src="../../images/playlist.png" bindtap="showPopup"></image>
     </view>
   </view>
+  <van-toast id="van-toast"/>
   <!-- 播放列表弹出层 -->
   <van-popup show="{{ show }}" round position="bottom" custom-style="height: 60%" bind:close="onClose"> 
     <view class="popup">
@@ -39,7 +40,7 @@
     <view class="musicContainer">
         <block wx:for="{{playList}}" wx:key="index">
         <view class="lists">
-            <view class="musicName">
+            <view class="musicName" bindtap="playMusic_1" data-mid="{{item.data.songmid}}" data-albummid="{{item.data.albummid}}" data-songname="{{item.data.songname}}" data-singer="{{item.data.singer[0].name}}">
               <text style="color:{{musicmid==item.data.songmid? '#4bb0ff':''}}">{{item.data.songname}}</text>
               <text style="color:{{musicmid==item.data.songmid? '#4bb0ff':''}}">{{item.data.singer[0].name}}</text>           
             </view>
