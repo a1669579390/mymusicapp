@@ -20,7 +20,7 @@
   <!-- 获取到的歌曲列表 -->
   <view class="music-list">
    <block wx:for="{{list.songlist}}" wx:key="index">
-      <view class="list-01" data-smm="{{item.data.strMediaMid}}" data-mid="{{item.data.songmid}}" data-alumn="{{item.data.albummid}}" data-albumname="{{item.data.songname}}" data-name="{{item.data.singer[0].name}}" bindtap="toPlay">
+      <view class="list-01" data-smm="{{item.data.strMediaMid}}" data-mid="{{item.data.songmid}}" data-alumn="{{item.data.albummid}}" data-albumname="{{item.data.songname}}" data-name="{{item.data.singer[0].name}}" data-index="{{index}}" bindtap="toPlay">
         <view>{{index+1}}</view>
         <view class="list-02">        
           <text style="color:{{musicmid==item.data.songmid? '#4bb0ff':''}}">{{item.data.songname}}</text>

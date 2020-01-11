@@ -71,12 +71,13 @@ Page({
       }else{
         // 在跳转的时候将值给全局变量musicmid来控制重新播放
         getApp().globalData.musicmid = mid;
-        getApp().globalData.musicSrc = url
-        this.setData({ musicUrl: url })
+        getApp().globalData.musicSrc = url;
+        this.setData({ musicUrl: url, auto: 1 })
         bgMusic.title = getApp().globalData.albumname,
           //判断进入播放器时当前播放的音乐跟点的是否一致，如果一直就不播放
           bgMusic.src = this.data.musicUrl;
-        this.setData({ auto: 1 })
+          // this.data.playList.unshift
+        
         // this.currentMusic()
       }
     
@@ -148,7 +149,6 @@ Page({
       let albumname = this.data.playList[i + 1].data.songname;
       let singer = this.data.playList[i + 1].data.singer[0].name;
       let alumnUrl = `https://y.gtimg.cn/music/photo_new/T002R500x500M000${this.data.playList[i + 1].data.albummid}_100.jpg`;
-      // this.getSongMsg(this.data.musicmid,this.data.strMediaMid,this.data.alumn)
       console.log(albumname, singer, alumnUrl)
       this.setData({
         musicmid: this.data.playSongs[i + 1],
@@ -188,7 +188,20 @@ Page({
     })
   },
   /*在播放列表点击播放 */
-  
+  playMusic_1(event) {
+    let mid = event.currentTarget.dataset.mid;
+    let albummid = event.currentTarget.dataset.albummid;
+    let songname = event.currentTarget.dataset.songname;
+    let singer = event.currentTarget.dataset.singer;
+    console.log(mid)
+    this.setData({
+      musicmid: mid,
+      alumnUrl: `https://y.gtimg.cn/music/photo_new/T002R500x500M000${albummid}_100.jpg`,
+      name: singer,
+      albumname: songname
+    })
+    this.getVkey(mid)
+  },
   /*返回上一页 */
   back(){
     wx.navigateBack({ changed: true })
@@ -197,20 +210,17 @@ Page({
   showPopup() {
     this.setData({ show: true });
   },
-  playMusic_1(event){
-    let mid = event.currentTarget.dataset.mid;
-    let albummid = event.currentTarget.dataset.albummid;
-    let songname=event.currentTarget.dataset.songname;
-    let singer=event.currentTarget.dataset.singer;
-    console.log(mid)
-    this.setData({ 
-      musicmid: mid,
-      alumnUrl: `https://y.gtimg.cn/music/photo_new/T002R500x500M000${albummid}_100.jpg`,
-      name:singer,
-      albumname: songname
-       })
-    this.getVkey(mid)
-  },
+ /*删除播放列表指定的一曲*/
+ del(event){
+   let index = event.currentTarget.dataset.index;
+   console.log(index)
+   this.data.playList.splice(index, 1)
+   this.data.songmid.splice(index,1)
+   this.setData({
+     playList: this.data.playList,
+     songmid:this.data.songmid
+   })
+ },
   /**
    * 生命周期函数--监听页面加载
    */

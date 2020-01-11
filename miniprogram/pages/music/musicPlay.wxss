@@ -160,8 +160,10 @@
   color: #555;
   white-space:nowrap;
   text-overflow:ellipsis;
+  padding: 0 0 0 6rpx;
 }
 .close image{
+  padding: 10rpx 0 0 0;
   width: 30rpx;
   height: 30rpx;
 }

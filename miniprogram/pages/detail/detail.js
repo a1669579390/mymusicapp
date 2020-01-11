@@ -26,12 +26,14 @@ getDetails(){
       var res2 = JSON.parse(res1.substring(0, res1.length - 1))
       this.setData({ list: res2 })
       wx.hideLoading();
-      // console.log(this.data.list)
+      console.log(this.data.list)
     }
   })
 },
 /*跳转指定歌曲先获取vkey */
 toPlay(event){
+  let index=event.currentTarget.dataset.index;
+  console.log(index)
   let mid = event.currentTarget.dataset.mid;
   let strMediaMid = event.currentTarget.dataset.smm;
   let alumn=event.currentTarget.dataset.alumn;
@@ -39,6 +41,9 @@ toPlay(event){
   getApp().globalData.albumname = albumname;//把专辑名字赋给全局变量
   let name=event.currentTarget.dataset.name;//歌手名字
   getApp().globalData.album = name;
+  getApp().globalData.playList.unshift(this.data.list.songlist[index])
+  
+  console.log()
   let path = `/pages/music/musicPlay?&mid=${mid}&strMediaMid=${strMediaMid}&alumn=${alumn}&albumname=${albumname}&name=${name}`;
   wx.navigateTo({
     url: path,

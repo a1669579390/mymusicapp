@@ -32,8 +32,10 @@
   <!-- 播放列表弹出层 -->
   <van-popup show="{{ show }}" round position="bottom" custom-style="height: 60%" bind:close="onClose"> 
     <view class="popup">
-      <image src="../../images/lists.png"></image>
-      <text>列表循环({{playList.length}})</text>
+      <image  bindtap="checked"
+       src="{{mode=='single'?'../../images/smallplay.png':'../../images/lists.png'}}"></image>
+      <text wx:if="{{mode!='single'}}">列表循环({{playList.length}})</text>
+      <text wx:else>单曲循环({{playList.length}})</text>
       <image src="../../images/clear.png"></image>
     </view>
     <van-divider />
@@ -44,7 +46,7 @@
               <text style="color:{{musicmid==item.data.songmid? '#4bb0ff':''}}">{{item.data.songname}}</text>
               <text style="color:{{musicmid==item.data.songmid? '#4bb0ff':''}}">{{item.data.singer[0].name}}</text>           
             </view>
-            <view class="close"><image src="../../images/close.png"></image></view>
+            <view class="close" bindtap="del" data-index="{{index}}"><image src="../../images/close.png"></image></view>
           </view>
         </block>
     </view>
