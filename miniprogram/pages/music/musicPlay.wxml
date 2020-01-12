@@ -46,7 +46,7 @@
               <text style="color:{{musicmid==item.data.songmid? '#4bb0ff':''}}">{{item.data.songname}}</text>
               <text style="color:{{musicmid==item.data.songmid? '#4bb0ff':''}}">{{item.data.singer[0].name}}</text>           
             </view>
-            <view class="close" bindtap="del" data-index="{{index}}"><image src="../../images/close.png"></image></view>
+            <view class="close" bindtap="del" data-index="{{index}}" data-mid="{{item.data.songmid}}"><image src="../../images/close.png"></image></view>
           </view>
         </block>
     </view>

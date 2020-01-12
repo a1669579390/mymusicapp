@@ -139,7 +139,8 @@ Page({
   },
   /*点击下一曲触发事件 */
   onNext() {
-    let i;
+    let i=0;
+    console.log(this.data.playSongs)
     for (var key in this.data.playSongs) {
       if (this.data.playSongs[key] == this.data.musicmid) {
         i = parseInt(key)
@@ -224,14 +225,21 @@ Page({
  /*删除播放列表指定的一曲*/
  del(event){
    let index = event.currentTarget.dataset.index;
-   this.data.playList.splice(index, 1)
-   this.setData({
-     playList: this.data.playList,
-     songmid:this.data.songmid
-   })
-   console.log(index)
-
-  //  this.data.songmid.splice(index, 1)
+   let mid=event.currentTarget.dataset.mid;
+   if(this.data.musicmid==mid){
+     Toast({
+       message:"当前音乐正在播放",
+       position:"bottom"
+     })
+   }else{
+     this.data.playList.splice(index, 1)
+     this.data.playSongs.splice(index, 1)
+     this.setData({
+       playList: this.data.playList,
+       playSongs: this.data.playSongs
+     })
+     getApp().globalData.playList = this.data.playList;
+   }
  },
   /**
    * 生命周期函数--监听页面加载
