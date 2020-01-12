@@ -6,21 +6,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    list: [
-      //{pic:'',name:'下山',detail:'要不要买菜·下山'},
-    //   { pic: '', name: '下山', detail: '要不要买菜·下山' },
-    //   { pic: '', name: '下山', detail: '要不要买菜·下山' },
-    //   { pic: '', name: '下山', detail: '要不要买菜·下山' },
-    //   { pic: '', name: '下山', detail: '要不要买菜·下山' },
-    //   { pic: '', name: '下山', detail: '要不要买菜·下山' }
-    ],
-    
+    list: [],
+    picUrl:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getRecommenData()
   },
   getRecommenData:function(){
     wx.showLoading({
@@ -32,9 +26,18 @@ Page({
       var res1 = res.result.replace("jp1(","")
       var res2=JSON.parse(res1.substring(0,res1.length-1))
       var res3 = res2.songlist.slice(0, 6)
-      this.setData({list:res3})
+      this.setData({list:res3}) 
+      let arr=[]  
+      res3.map((item,index)=>{
+        let url = `https://y.gtimg.cn/music/photo_new/T002R500x500M000${item.data.albummid}_100.jpg`
+        arr.push(url)
+        this.setData({
+          picUrl:arr
+        })
+      })
       wx.hideLoading();
       console.log(this.data.list)     
+      console.log(this.data.picUrl)
     }).catch(err=>{
       console.log(err)
     })
@@ -43,7 +46,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    this.getRecommenData()
+
   },
 
   /**

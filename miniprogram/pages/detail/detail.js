@@ -26,7 +26,6 @@ getDetails(){
       var res2 = JSON.parse(res1.substring(0, res1.length - 1))
       this.setData({ list: res2 })
       wx.hideLoading();
-      console.log(this.data.list)
     }
   })
 },
@@ -51,7 +50,6 @@ toPlay(event){
 /*点击巅峰榜的播放按钮将所有音乐添加到播放列表 */
 playAll(){
   getApp().globalData.playList=this.data.list.songlist
-  console.log(getApp().globalData.playList)
   Toast.success('添加成功')
 },
   /**
@@ -68,7 +66,6 @@ playAll(){
     })
   },
   watchBack: function (musicmid) {
-    console.log(musicmid)
     this.setData({
       musicmid:musicmid
     })

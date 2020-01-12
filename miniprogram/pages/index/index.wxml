@@ -22,18 +22,13 @@
   <view class="hot_detail">
     <block wx:for="{{list}}" wx:key="index">
       <view class="detail_rows">
-        <van-image
-          width="130rpx"
-          height="130rpx"
-          radius="10rpx"
-          src="https://img.yzcdn.cn/vant/cat.jpeg"
-        ></van-image>
+        <image src="{{picUrl[index]}}"></image>
         <view class="arrow_between">       
           <view class="name_position">
-            <text>{{item.name}}</text>
-            <text>{{item.detail}}</text>
+            <text>{{item.data.songname}}</text>
+            <text>{{item.data.singer[0].name}}</text>
           </view>         
-           <van-icon name="arrow"></van-icon>
+           <!-- <van-icon name="arrow"></van-icon> -->
           </view>  
       </view>         
     </block>

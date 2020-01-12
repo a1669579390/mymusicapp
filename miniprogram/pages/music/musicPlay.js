@@ -3,6 +3,7 @@
 //设置App监听回调
 // 如果其他页面修改了 app.js 中的 showPictureDetail 值, 就会触发回调
 import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast'
+import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
 //获取全局唯一的背景音乐管理器
 const bgMusic = wx.getBackgroundAudioManager()
 Page({
@@ -67,7 +68,6 @@ Page({
       let url = `http://isure.stream.qqmusic.qq.com/${res2.req_0.data.midurlinfo[0].purl}`  
       if (getApp().globalData.musicmid==this.data.musicmid){
         // this.currentMusic()
-        console.log(1)
       }else{
         // 在跳转的时候将值给全局变量musicmid来控制重新播放
         getApp().globalData.musicmid = mid;
@@ -76,11 +76,7 @@ Page({
         bgMusic.title = getApp().globalData.albumname,
           //判断进入播放器时当前播放的音乐跟点的是否一致，如果一直就不播放
           bgMusic.src = this.data.musicUrl;
-          // this.data.playList.unshift
-        
-        // this.currentMusic()
-      }
-    
+      }    
     })
       .catch(err => { console.log(err) })
   },
@@ -93,7 +89,6 @@ Page({
     let playList = getApp().globalData.playList;
     var p1=[...new Set(playList)]
     /*对数组去重 */
-    console.log(p1)
     this.setData({
       strMediaMid: strMediaMid,
       alumn: alumn,
@@ -109,7 +104,6 @@ Page({
     this.data.playList.map((item, index) => {
       this.data.playSongs.push(item.data.songmid)
     })
-    // console.log(this.data.playSongs)
   },
   // 点击上一曲触发事件
   onPrev(){
@@ -122,7 +116,6 @@ Page({
     if (i ==0) {
       console.log("这是第一首")
     } else {
-      console.log(i)
       this.getVkey(this.data.playSongs[i - 1])
       let albumname = this.data.playList[i - 1].data.songname;
       let singer = this.data.playList[i - 1].data.singer[0].name;
@@ -140,7 +133,6 @@ Page({
   /*点击下一曲触发事件 */
   onNext() {
     let i=0;
-    console.log(this.data.playSongs)
     for (var key in this.data.playSongs) {
       if (this.data.playSongs[key] == this.data.musicmid) {
         i = parseInt(key)
@@ -149,7 +141,6 @@ Page({
     if(i==this.data.playSongs.length-1){
       console.log("这是最后一首")
     }else{
-      console.log(i)
       this.getVkey(this.data.playSongs[i + 1])
       let albumname = this.data.playList[i + 1].data.songname;
       let singer = this.data.playList[i + 1].data.singer[0].name;
@@ -198,7 +189,6 @@ Page({
     let albummid = event.currentTarget.dataset.albummid;
     let songname = event.currentTarget.dataset.songname;
     let singer = event.currentTarget.dataset.singer;
-    console.log(mid)
     this.setData({
       musicmid: mid,
       alumnUrl: `https://y.gtimg.cn/music/photo_new/T002R500x500M000${albummid}_100.jpg`,
@@ -209,10 +199,27 @@ Page({
   },
   /*清空播放列表 */
   clearList(){
-    getApp().globalData.playList.splice(1);
-    this.setData({
-      playList: getApp().globalData.playList
-    })
+    this.setData({ show: false });
+    Dialog.confirm({
+      title: '提示',
+      message: '确定要清空列表？',
+      confirmButtonText:"清空",
+      cancelButtonText:"取消",
+      width:"700rpx"
+    }).then(() => {
+      bgMusic.stop()
+      getApp().globalData.playList.length=0;
+      getApp().globalData.musicmid=null
+      this.setData({
+        playList:[],
+      })
+      wx.navigateBack({
+        delta: 1
+      })
+    }).catch(() => {
+      // on cancel
+    });
+   
   },
   /*返回上一页 */
   back(){

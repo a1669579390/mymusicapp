@@ -29,6 +29,7 @@
     </view>
   </view>
   <van-toast id="van-toast"/>
+  <van-dialog id="van-dialog" />
   <!-- 播放列表弹出层 -->
   <van-popup show="{{ show }}" round position="bottom" custom-style="height: 60%" bind:close="onClose"> 
     <view class="popup">
