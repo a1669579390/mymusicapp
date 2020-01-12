@@ -41,14 +41,12 @@ toPlay(event){
   getApp().globalData.albumname = albumname;//把专辑名字赋给全局变量
   let name=event.currentTarget.dataset.name;//歌手名字
   getApp().globalData.album = name;
-  getApp().globalData.playList.unshift(this.data.list.songlist[index])
-  
-  console.log()
+  let item = getApp().globalData.playList
+  item.unshift(this.data.list.songlist[index])
   let path = `/pages/music/musicPlay?&mid=${mid}&strMediaMid=${strMediaMid}&alumn=${alumn}&albumname=${albumname}&name=${name}`;
   wx.navigateTo({
     url: path,
-  });
-   
+  });   
 },
 /*点击巅峰榜的播放按钮将所有音乐添加到播放列表 */
 playAll(){

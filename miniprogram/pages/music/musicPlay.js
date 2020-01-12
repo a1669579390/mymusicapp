@@ -90,6 +90,10 @@ Page({
   },
   /*获取当前歌曲的信息 */
   getSongMsg(mid, strMediaMid, alumn) {
+    let playList = getApp().globalData.playList;
+    var p1=[...new Set(playList)]
+    /*对数组去重 */
+    console.log(p1)
     this.setData({
       strMediaMid: strMediaMid,
       alumn: alumn,
@@ -97,7 +101,7 @@ Page({
       albumname: getApp().globalData.albumname,//歌曲名字
       name: getApp().globalData.album,//歌手名字
       musicmid: mid,//歌曲唯一id
-      playList: getApp().globalData.playList
+      playList: p1
     })
   },
    //定义一个函数获取到播放列表所有的songmid
@@ -105,7 +109,7 @@ Page({
     this.data.playList.map((item, index) => {
       this.data.playSongs.push(item.data.songmid)
     })
-    console.log(this.data.playSongs)
+    // console.log(this.data.playSongs)
   },
   // 点击上一曲触发事件
   onPrev(){
@@ -202,6 +206,13 @@ Page({
     })
     this.getVkey(mid)
   },
+  /*清空播放列表 */
+  clearList(){
+    getApp().globalData.playList.splice(1);
+    this.setData({
+      playList: getApp().globalData.playList
+    })
+  },
   /*返回上一页 */
   back(){
     wx.navigateBack({ changed: true })
@@ -213,13 +224,14 @@ Page({
  /*删除播放列表指定的一曲*/
  del(event){
    let index = event.currentTarget.dataset.index;
-   console.log(index)
    this.data.playList.splice(index, 1)
-   this.data.songmid.splice(index,1)
    this.setData({
      playList: this.data.playList,
      songmid:this.data.songmid
    })
+   console.log(index)
+
+  //  this.data.songmid.splice(index, 1)
  },
   /**
    * 生命周期函数--监听页面加载

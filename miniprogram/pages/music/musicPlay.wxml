@@ -36,7 +36,7 @@
        src="{{mode=='single'?'../../images/smallplay.png':'../../images/lists.png'}}"></image>
       <text wx:if="{{mode!='single'}}">列表循环({{playList.length}})</text>
       <text wx:else>单曲循环({{playList.length}})</text>
-      <image src="../../images/clear.png"></image>
+      <image src="../../images/clear.png" bindtap="clearList"></image>
     </view>
     <van-divider />
     <view class="musicContainer">
