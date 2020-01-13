@@ -74,12 +74,37 @@
 }
 /* 热门歌单样式 */
 .musices{
-  overflow-x: auto;
-  overflow-y: hidden;
   white-space: nowrap;
-  padding:20rpx 12rpx 0 28rpx;
+  padding:20rpx 12rpx 0 10rpx;
 }
 .every_musices{
   padding: 0 20rpx 0 0;
   display: inline-block;
+  position: relative;
+   /* width: 100%; */
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+/* 播放图标 */
+.listenCount{
+  position: absolute;
+  bottom: 15rpx;
+  right: 20rpx;
+  z-index: 20;
+  color: #fff;
+  font-size: 24rpx;
+  background-color: #555555;
+  opacity: 0.8;
+  padding: 4rpx 6rpx 4rpx 6rpx;
+  border-radius: 10rpx;
+  display: flex;
+  align-items: center;
+}
+.listenCount image{
+  width: 24rpx;
+  height: 24rpx;
 }

@@ -7,46 +7,82 @@ Page({
    */
   data: {
     list: [],
-    picUrl:[]
+    picUrl:[],
+    guanGedan:[],//官方歌单
+    darenGedan:[],//达人歌单
+    listenCount_0:[],//官方歌单收听
+    listenCount_1:[],//达人歌单收听
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    this.getRecommenData()
-  },
-  getRecommenData:function(){
+  getRecommenData: function () {
     wx.showLoading({
       title: '加载中····',
     });
     wx.cloud.callFunction({
-      name:"hotMusic",
-    }).then(res=>{    
-      var res1 = res.result.replace("jp1(","")
-      var res2=JSON.parse(res1.substring(0,res1.length-1))
+      name: "hotMusic",
+    }).then(res => {
+      var res1 = res.result.replace("jp1(", "")
+      var res2 = JSON.parse(res1.substring(0, res1.length - 1))
       var res3 = res2.songlist.slice(0, 6)
-      this.setData({list:res3}) 
-      let arr=[]  
-      res3.map((item,index)=>{
+      this.setData({ list: res3 })
+      let arr = []
+      res3.map((item, index) => {
         let url = `https://y.gtimg.cn/music/photo_new/T002R500x500M000${item.data.albummid}_100.jpg`
         arr.push(url)
         this.setData({
-          picUrl:arr
+          picUrl: arr
         })
       })
       wx.hideLoading();
-      console.log(this.data.list)     
+      console.log(this.data.list)
       console.log(this.data.picUrl)
+    }).catch(err => {
+      console.log(err)
+    })
+  },
+  getGedan(){
+    wx.showLoading({
+      title: '加载中····',
+    });
+    wx.cloud.callFunction({
+      name:"getGedan",
+    }).then(res=>{  
+      let result=JSON.parse(res.result)
+      let guanGedan = result.MusicHallHomePage.data.v_shelf[0];
+      let darenGedan = result.MusicHallHomePage.data.v_shelf[1];
+      console.log(guanGedan.v_niche[0].v_card)
+      let arr=[];
+      let arr1=[];   
+      guanGedan.v_niche[0].v_card.map((item,index)=>{
+        arr.push((item.cnt /= 10000).toFixed(1) + "万")
+        })
+      darenGedan.v_niche[0].v_card.map((item, index) => {
+        arr1.push((item.cnt /= 10000).toFixed(1) + "万")
+      })
+        console.log(arr1)
+      this.setData({ 
+        guanGedan,
+        darenGedan,
+        listenCount_0:arr,
+        listenCount_1:arr1
+        })
+      // console.log(this.data.guanGedan,this.data.darenGedan)
     }).catch(err=>{
       console.log(err)
     })
   },
   /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    this.getRecommenData()
+    this.getGedan()
+    console.log(this.data.guanGedan)
+  },
+  
+  /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
   },
 
   /**
