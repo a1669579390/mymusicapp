@@ -70,13 +70,19 @@ Page({
       console.log(err)
     })
   },
+  /*跳转到歌单详情 */
+  to_detail(event){
+    let id = event.currentTarget.dataset.id;
+    wx.redirectTo({
+      url: `/pages/gedan/gedanDetail?id=${id}`,
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.getRecommenData()
     this.getGedan()
-    console.log(this.data.guanGedan)
   },
   
   /**

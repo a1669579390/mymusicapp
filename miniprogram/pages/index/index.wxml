@@ -43,7 +43,7 @@
 <!-- 热门歌单列表 -->
  <scroll-view scroll-x="true" class="musices">  
     <block wx:for="{{guanGedan.v_niche[0].v_card}}" wx:key="index">
-     <view class="every_musices">
+     <view class="every_musices" data-id="{{item.id}}" bindtap="to_detail">
      <view class="listenCount">
         <image src="../../images/play.png"></image>
         {{listenCount_0[index]}}
@@ -66,7 +66,7 @@
 <!-- 热门歌单列表 -->
  <scroll-view scroll-x="true" class="musices">  
     <block wx:for="{{darenGedan.v_niche[0].v_card}}" wx:key="index">
-     <view class="every_musices">
+     <view class="every_musices" data-id="{{item.id}}" bindtap="to_detail">
      <view class="listenCount">
         <image src="../../images/play.png"></image>
         {{listenCount_1[index]}}

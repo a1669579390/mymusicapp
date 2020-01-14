@@ -1,0 +1,13 @@
+<view>
+  <view class="logo"><!--歌单上方的背景图-->
+    <image src="{{imgUrl}}"></image>
+  </view>
+      <!-- 歌单详情 -->
+  <view class="list">
+    <block>
+      <view class="details">
+        <text>123456789</text>
+      </view>
+    </block>
+  </view>
+</view>
