@@ -29,7 +29,8 @@ Page({
       str5 = JSON.parse(str5)
       console.log(str5)
       this.setData({
-        imgUrl:str5.logo
+        imgUrl:str5.logo,
+        title: str5.dissname
       })
       console.log(str5_01)
     })

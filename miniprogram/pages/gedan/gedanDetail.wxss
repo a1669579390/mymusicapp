@@ -9,4 +9,44 @@
   background-color: #fff;
   border-radius: 50rpx 50rpx 0 0;
   margin: -50rpx 0 0 0;
+  display: flex;
+  justify-content: space-around;
+}
+.buttonList{
+  position: absolute;
+  width: 90%;
+  background-color: #fff;
+  margin:-8rpx auto;
+  box-shadow: 0 0 10rpx #ccc;
+  padding: 15rpx 0 28rpx 0;
+  text-align: center;
+}
+.buttonList text{
+  font-size: 30rpx;
+  color: #555;
+}
+.button{
+  width: 50rpx;
+  height: 50rpx;
+  background-color: #4bb0ff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: space-around;  
+  align-items: center;
+  padding: 2rpx 0 0 2rpx;
+}
+.button image{
+  width: 30rpx;
+  height: 30rpx;
+}
+.playText{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0 0rpx 0;
+}
+.playText text{
+  padding: 0 0 0 20rpx;
+  font-size: 27rpx;
 }

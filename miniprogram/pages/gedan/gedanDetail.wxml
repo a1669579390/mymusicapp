@@ -4,10 +4,20 @@
   </view>
       <!-- 歌单详情 -->
   <view class="list">
-    <block>
-      <view class="details">
-        <text>123456789</text>
+    <view class="buttonList"><!--播放按钮-->
+      <text>{{title}}</text>
+      <van-divider></van-divider>
+      <view class="playText">
+        <view class="button">
+          <image src="../../images/play.png"></image>       
+        </view>
+        <text>播放全部</text>
       </view>
-    </block>
+    </view>
+      <block>
+        <view class="details">
+          <view></view>
+        </view>
+      </block>
   </view>
 </view>
