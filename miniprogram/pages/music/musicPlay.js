@@ -259,6 +259,7 @@ Page({
     this.getSongMsg(mid, strMediaMid, alumn)
     this.getVkey(mid)
     this.getMid()
+    console.log(getApp().globalData.playList)
   },
 
   /**

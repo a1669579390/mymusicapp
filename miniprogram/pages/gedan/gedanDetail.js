@@ -4,7 +4,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    list:[]
   },
   /*调用云函数获取歌单详情 */
   getGedanDetail(id) {
@@ -27,13 +27,39 @@ Page({
       str5 = str5.replace("window.taogeInfo =", "")
       str5 = str5.replace(";", "")
       str5 = JSON.parse(str5)
-      console.log(str5)
+      let arr1=[];
+      
+      for(let i=0;i<str5_01.length;i++){
+        let obj = {};
+        obj.data=str5_01[i]
+        arr1.push(obj)
+      }    
+      console.log(arr1)
       this.setData({
         imgUrl:str5.logo,
-        title: str5.dissname
+        title: str5.dissname,
+        list: arr1
       })
-      console.log(str5_01)
+      // console.log(str5_01)
     })
+  },
+  /*跳转播放界面 */
+  to_music(event){
+    let index = event.currentTarget.dataset.index;
+    let mid=event.currentTarget.dataset.mid;
+    let alumn = event.currentTarget.dataset.alumn;
+    let name = event.currentTarget.dataset.name;
+    let albumname=event.currentTarget.dataset.albumname;
+    let strMediaMid = event.currentTarget.dataset.smm;
+    getApp().globalData.albumname = albumname;//把专辑名字赋给全局变量
+    getApp().globalData.album = name;
+    // console.log(mid)
+    let item = getApp().globalData.playList;
+    item.unshift(this.data.list[index])
+    let path = `/pages/music/musicPlay?&mid=${mid}&strMediaMid=${strMediaMid}&alumn=${alumn}&albumname=${albumname}&name=${name}`;
+    wx.navigateTo({
+      url: path,
+    });
   },
   /**
    * 生命周期函数--监听页面加载

@@ -14,10 +14,13 @@
         <text>播放全部</text>
       </view>
     </view>
-      <block>
-        <view class="details">
-          <view></view>
+    <view class="details">
+      <block wx:for="{{list}}" wx:key="index">
+        <view class="list-1" data-mid="{{item.data.songmid}}" data-alumn="{{item.data.albummid}}" data-name="{{item.data.singer[0].name}}" data-albumname="{{item.data.songname}}" data-smm="{{item.data.strMediaMid}}" data-index="{{index}}" bindtap="to_music">
+          <text>{{item.data.songname}}</text>
+          <text>{{item.data.singer[0].name}}-{{item.data.albumname}}</text>
         </view>
       </block>
+    </view>
   </view>
 </view>
