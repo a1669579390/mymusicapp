@@ -1,4 +1,4 @@
-<view>
+<view wx:if="{{list.length!=0}}">
   <view class="logo"><!--歌单上方的背景图-->
     <image src="{{imgUrl}}"></image>
   </view>
@@ -17,8 +17,8 @@
     <view class="details">
       <block wx:for="{{list}}" wx:key="index">
         <view class="list-1" data-mid="{{item.data.songmid}}" data-alumn="{{item.data.albummid}}" data-name="{{item.data.singer[0].name}}" data-albumname="{{item.data.songname}}" data-smm="{{item.data.strMediaMid}}" data-index="{{index}}" bindtap="to_music">
-          <text>{{item.data.songname}}</text>
-          <text>{{item.data.singer[0].name}}-{{item.data.albumname}}</text>
+          <text style="color:{{musicmid==item.data.songmid? '#4bb0ff':''}}">{{item.data.songname}}</text>
+          <text style="color:{{musicmid==item.data.songmid? '#4bb0ff':''}}">{{item.data.singer[0].name}}-{{item.data.albumname}}</text>
         </view>
       </block>
     </view>

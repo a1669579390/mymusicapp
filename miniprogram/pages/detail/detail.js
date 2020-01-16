@@ -1,4 +1,5 @@
 // pages/detail/detail.js
+let common = require('../../components/api/get.js')
 import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast'
 Page({
 
@@ -31,21 +32,9 @@ getDetails(){
 },
 /*跳转指定歌曲先获取vkey */
 toPlay(event){
-  let index=event.currentTarget.dataset.index;
-  console.log(index)
-  let mid = event.currentTarget.dataset.mid;
-  let strMediaMid = event.currentTarget.dataset.smm;
-  let alumn=event.currentTarget.dataset.alumn;
-  let albumname = event.currentTarget.dataset.albumname;//专辑名字
-  getApp().globalData.albumname = albumname;//把专辑名字赋给全局变量
-  let name=event.currentTarget.dataset.name;//歌手名字
-  getApp().globalData.album = name;
-  let item = getApp().globalData.playList
-  item.unshift(this.data.list.songlist[index])
-  let path = `/pages/music/musicPlay?&mid=${mid}&strMediaMid=${strMediaMid}&alumn=${alumn}&albumname=${albumname}&name=${name}`;
-  wx.navigateTo({
-    url: path,
-  });   
+  
+  let list = this.data.list.songlist;
+  common.to_music(event, list)
 },
 /*点击巅峰榜的播放按钮将所有音乐添加到播放列表 */
 playAll(){
@@ -69,6 +58,7 @@ playAll(){
     this.setData({
       musicmid:musicmid
     })
+    console.log(this.data.musicmid)
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

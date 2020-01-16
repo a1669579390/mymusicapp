@@ -1,6 +1,6 @@
 /* pages/index/index.wxss */
 .first_bar,.second_bar{
-  padding: 10rpx 0 0 0;
+  padding: 30rpx 0 0 0;
 }
 .hot_music{
   display: flex;
@@ -22,7 +22,7 @@
   font-size: 28rpx;
 }
  .hot_detail{
-  padding:40rpx 10rpx 34rpx 4rpx;
+  padding:40rpx 10rpx 0rpx 4rpx;
   display: flex;
   flex-wrap: wrap;
   width: 100%;
@@ -33,7 +33,7 @@
 } */
 .detail_rows{
   display: flex;  
-  padding: 0 0 16rpx 0;
+  padding: 16rpx 0 0rpx 0;
   flex-direction: column;
   width: 31%;
 }

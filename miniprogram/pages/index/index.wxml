@@ -21,7 +21,7 @@
   <!-- 推荐列表 -->
   <view class="hot_detail">
     <block wx:for="{{list}}" wx:key="index">
-      <view class="detail_rows">
+      <view class="detail_rows" data-mid="{{item.data.songmid}}" data-alumn="{{item.data.albummid}}" data-name="{{item.data.singer[0].name}}" data-albumname="{{item.data.songname}}" data-smm="{{item.data.strMediaMid}}" data-index="{{index}}" bindtap="to_music">
         <image src="{{picUrl[index]}}"></image>
         <view class="arrow_between">       
           <view class="name_position">

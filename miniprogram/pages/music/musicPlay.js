@@ -88,6 +88,7 @@ Page({
   getSongMsg(mid, strMediaMid, alumn) {
     let playList = getApp().globalData.playList;
     var p1=[...new Set(playList)]
+    console.log(p1)
     /*对数组去重 */
     this.setData({
       strMediaMid: strMediaMid,
@@ -138,7 +139,7 @@ Page({
         i = parseInt(key)
       }
     }
-    if(i==this.data.playSongs.length-1){
+    if(i==this.data.playList.length-1){
       console.log("这是最后一首")
     }else{
       this.getVkey(this.data.playSongs[i + 1])
@@ -181,6 +182,27 @@ Page({
       }else{
         this.onNext()
       } 
+    })
+    bgMusic.onError(()=>{
+      const toast = Toast.loading({
+        duration: 0, // 持续展示 toast
+        forbidClick: true,
+        message: '网络错误,即将切换到下一曲'
+      });
+
+      let second = 3;
+      const timer = setInterval(() => {
+        second--;
+        if (second==0) {
+          clearInterval(timer);
+          // 手动清除 Toast
+          console.log("即将播放下一曲")
+          Toast.clear();
+          this.onNext()
+        }
+      }, 1000);
+      
+      
     })
   },
   /*在播放列表点击播放 */
@@ -260,6 +282,9 @@ Page({
     this.getVkey(mid)
     this.getMid()
     console.log(getApp().globalData.playList)
+    this.setData({
+      mode:getApp().globalData.mode
+    })
   },
 
   /**
@@ -272,7 +297,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.data.mode=getApp().globalData.mode
+
   },
 
   /**
