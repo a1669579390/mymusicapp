@@ -1,6 +1,7 @@
 //app.js
 App({
   globalData:{
+    index:0,
     rankList:'',
     album:'',//当前歌手名字
     albumname:'',//当前专辑名字
@@ -8,7 +9,10 @@ App({
     _musicmid:'',//当前播放音乐的mid
     palyIndex:0,//当前播放歌曲的index
     mode:'single',
-    _name:"123"
+    _name:"123",
+    _musicUrl:'',//存放当前正在播放的音乐路径
+    _on:false,//控制专辑图的旋转
+    _alumnUrl:'',//存放当前正在播放的专辑图
   },
   getRank() {
     var that = this

@@ -1,5 +1,5 @@
 // pages/index/index.js
-
+let common = require('../../components/api/get.js')
 Page({
 
   /**
@@ -12,6 +12,7 @@ Page({
     darenGedan:[],//达人歌单
     listenCount_0:[],//官方歌单收听
     listenCount_1:[],//达人歌单收听
+    activeIdx:0
   },
   getRecommenData: function () {
     wx.showLoading({
@@ -34,7 +35,7 @@ Page({
       })
       wx.hideLoading();
       console.log(this.data.list)
-      console.log(this.data.picUrl)
+      // console.log(this.data.picUrl)
     }).catch(err => {
       console.log(err)
     })
@@ -79,21 +80,8 @@ Page({
   },
   /*跳转播放界面 */
   to_music(event) {
-    let index = event.currentTarget.dataset.index;
-    let mid = event.currentTarget.dataset.mid;
-    let alumn = event.currentTarget.dataset.alumn;
-    let name = event.currentTarget.dataset.name;
-    let albumname = event.currentTarget.dataset.albumname;
-    let strMediaMid = event.currentTarget.dataset.smm;
-    getApp().globalData.albumname = albumname;//把专辑名字赋给全局变量
-    getApp().globalData.album = name;
-    // console.log(mid)
-    let item = getApp().globalData.playList;
-    item.unshift(this.data.list[index])
-    let path = `/pages/music/musicPlay?&mid=${mid}&strMediaMid=${strMediaMid}&alumn=${alumn}&albumname=${albumname}&name=${name}`;
-    wx.navigateTo({
-      url: path,
-    });
+    let list = this.data.list;
+    common.to_music(event, list)
   },
   /**
    * 生命周期函数--监听页面加载
@@ -113,7 +101,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    if (typeof this.getTabBar === 'function' &&
+      this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 0
+      })
+    }
+    console.log(getApp().globalData._on)
   },
 
   /**
@@ -151,3 +145,7 @@ Page({
 
   }
 })
+
+    
+  
+

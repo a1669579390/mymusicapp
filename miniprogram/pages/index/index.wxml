@@ -1,3 +1,4 @@
+<scroll-view>
 <view class="body"  wx:if="{{list.length!=0}}">
 <!-- 搜索框 -->
 <van-search
@@ -31,7 +32,7 @@
            <!-- <van-icon name="arrow"></van-icon> -->
           </view>  
       </view>         
-    </block>
+    </block> 
   </view>
 </view>
 <!-- 热门歌单 -->
@@ -82,3 +83,4 @@
     </block>  
  </scroll-view>
 </view>
+</scroll-view>

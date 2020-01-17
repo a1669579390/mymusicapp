@@ -99,6 +99,7 @@ Page({
       musicmid: mid,//歌曲唯一id
       playList: p1
     })
+    getApp().globalData.alumnUrl = `https://y.gtimg.cn/music/photo_new/T002R500x500M000${alumn}_100.jpg`
   },
    //定义一个函数获取到播放列表所有的songmid
   getMid() {
@@ -122,13 +123,16 @@ Page({
       let singer = this.data.playList[i - 1].data.singer[0].name;
       let alumnUrl = `https://y.gtimg.cn/music/photo_new/T002R500x500M000${this.data.playList[i - 1].data.albummid}_100.jpg`;
       // this.getSongMsg(this.data.musicmid,this.data.strMediaMid,this.data.alumn)
-      console.log(albumname, singer, alumnUrl)
+      // console.log(albumname, singer, alumnUrl)
       this.setData({
         musicmid: this.data.playSongs[i - 1],
         albumname,
         name: singer,
         alumnUrl: alumnUrl
       })
+      let musicUrl = `/pages/music/musicPlay?&mid=${this.data.musicmid}&strMediaMid=${this.data.strMediaMid}&alumn=${this.data.playList[i-1].data.albummid}&albumname=${this.data.albumname}&name=${this.data.name}`
+      console.log(musicUrl)
+      getApp().globalData._musicUrl=musicUrl
     }
   },
   /*点击下一曲触发事件 */
@@ -146,13 +150,16 @@ Page({
       let albumname = this.data.playList[i + 1].data.songname;
       let singer = this.data.playList[i + 1].data.singer[0].name;
       let alumnUrl = `https://y.gtimg.cn/music/photo_new/T002R500x500M000${this.data.playList[i + 1].data.albummid}_100.jpg`;
-      console.log(albumname, singer, alumnUrl)
+      // console.log(albumname, singer, alumnUrl)
       this.setData({
         musicmid: this.data.playSongs[i + 1],
         albumname,
         name: singer,
         alumnUrl: alumnUrl
       })
+      let musicUrl = `/pages/music/musicPlay?&mid=${this.data.musicmid}&strMediaMid=${this.data.strMediaMid}&alumn=${this.data.playList[i + 1].data.albummid}&albumname=${this.data.albumname}&name=${this.data.name}`
+      console.log(musicUrl)
+      getApp().globalData._musicUrl = musicUrl
     }
   },
   /*切换播放模式 */

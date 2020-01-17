@@ -1,4 +1,8 @@
 /* pages/index/index.wxss */
+.body{
+  width: 100%;
+  padding: 0 0 130rpx;
+}
 .first_bar,.second_bar{
   padding: 30rpx 0 0 0;
 }
@@ -83,7 +87,6 @@
   position: relative;
    /* width: 100%; */
 }
-
 ::-webkit-scrollbar {
   width: 0;
   height: 0;

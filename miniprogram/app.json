@@ -15,11 +15,18 @@
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
-    "selectedColor": "#1989fa",
+    "selectedColor": "#1989fa", 
+    "custom":true,
     "list": [
       {
         "pagePath": "pages/index/index",
         "text": "乐库",
+        "iconPath": "images/music.png",
+        "selectedIconPath": "images/selectmusic.png"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "播放",
         "iconPath": "images/music.png",
         "selectedIconPath": "images/selectmusic.png"
       },
@@ -31,6 +38,7 @@
       }
     ]
   },
+  "usingComponents": {},
   "style": "v2",
   "sitemapLocation": "sitemap18.json",
   "requiredBackgroundModes": [

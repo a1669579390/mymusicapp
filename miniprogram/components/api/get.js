@@ -14,6 +14,7 @@ function to_music(event,list){
   item.unshift(list[index])
   console.log(item)
   let path = `/pages/music/musicPlay?&mid=${mid}&strMediaMid=${strMediaMid}&alumn=${alumn}&albumname=${albumname}&name=${name}`;
+  getApp().globalData._musicUrl=path;
   wx.navigateTo({
     url: path,
   });
