@@ -7,7 +7,7 @@
     <view class="buttonList"><!--播放按钮-->
       <text>{{title}}</text>
       <van-divider></van-divider>
-      <view class="playText">
+      <view class="playText" bindtap="playAll"  data-mid="{{list[0].data.songmid}}" data-alumn="{{list[0].data.albummid}}" data-name="{{list[0].data.singer[0].name}}" data-albumname="{{list[0].data.songname}}" data-smm="{{list[0].data.strMediaMid}}" data-index="0">
         <view class="button">
           <image src="../../images/play.png"></image>       
         </view>

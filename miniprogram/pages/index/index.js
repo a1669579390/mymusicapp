@@ -12,7 +12,6 @@ Page({
     darenGedan:[],//达人歌单
     listenCount_0:[],//官方歌单收听
     listenCount_1:[],//达人歌单收听
-    activeIdx:0
   },
   getRecommenData: function () {
     wx.showLoading({
@@ -50,7 +49,7 @@ Page({
       let result=JSON.parse(res.result)
       let guanGedan = result.MusicHallHomePage.data.v_shelf[0];
       let darenGedan = result.MusicHallHomePage.data.v_shelf[1];
-      console.log(guanGedan.v_niche[0].v_card)
+      // console.log(guanGedan.v_niche[0].v_card)
       let arr=[];
       let arr1=[];   
       guanGedan.v_niche[0].v_card.map((item,index)=>{
@@ -59,7 +58,7 @@ Page({
       darenGedan.v_niche[0].v_card.map((item, index) => {
         arr1.push((item.cnt /= 10000).toFixed(1) + "万")
       })
-        console.log(arr1)
+        // console.log(arr1)
       this.setData({ 
         guanGedan,
         darenGedan,
@@ -101,13 +100,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    let on = getApp().globalData._on
+    let alumnUrl = getApp().globalData.alumnUrl
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {
       this.getTabBar().setData({
-        selected: 0
+        selected: 0,
+        on,
+        alumnUrl
       })
     }
-    console.log(getApp().globalData._on)
+    // console.log(getApp().globalData._on)
   },
 
   /**

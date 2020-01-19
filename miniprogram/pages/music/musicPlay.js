@@ -49,9 +49,13 @@ Page({
   playMusic(){
     if(this.data.auto){
       this.setData({ on: false, auto: false  })
+      getApp().globalData._on=false;
+      getApp().globalData.auto=false;
       bgMusic.pause()
     }else{
       this.setData({ on: true , auto: true })
+      getApp().globalData._on = true;
+      getApp().globalData.auto = true;
       bgMusic.play()
     }
   },
@@ -72,8 +76,9 @@ Page({
         // 在跳转的时候将值给全局变量musicmid来控制重新播放
         getApp().globalData.musicmid = mid;
         getApp().globalData.musicSrc = url;
+        getApp().globalData._on = true;
         this.setData({ musicUrl: url, auto: 1 })
-        bgMusic.title = getApp().globalData.albumname,
+        bgMusic.title = this.data.albumname,
           //判断进入播放器时当前播放的音乐跟点的是否一致，如果一直就不播放
           bgMusic.src = this.data.musicUrl;
       }    
@@ -99,7 +104,7 @@ Page({
       musicmid: mid,//歌曲唯一id
       playList: p1
     })
-    getApp().globalData.alumnUrl = `https://y.gtimg.cn/music/photo_new/T002R500x500M000${alumn}_100.jpg`
+    getApp().globalData.alumnUrl = this.data.alumnUrl
   },
    //定义一个函数获取到播放列表所有的songmid
   getMid() {
@@ -116,7 +121,7 @@ Page({
       }
     }
     if (i ==0) {
-      console.log("这是第一首")
+      // console.log("这是第一首")
     } else {
       this.getVkey(this.data.playSongs[i - 1])
       let albumname = this.data.playList[i - 1].data.songname;
@@ -128,11 +133,12 @@ Page({
         musicmid: this.data.playSongs[i - 1],
         albumname,
         name: singer,
-        alumnUrl: alumnUrl
+        alumnUrl: alumnUrl,
       })
       let musicUrl = `/pages/music/musicPlay?&mid=${this.data.musicmid}&strMediaMid=${this.data.strMediaMid}&alumn=${this.data.playList[i-1].data.albummid}&albumname=${this.data.albumname}&name=${this.data.name}`
-      console.log(musicUrl)
-      getApp().globalData._musicUrl=musicUrl
+      getApp().globalData._musicUrl=musicUrl;
+      getApp().globalData.alumnUrl = alumnUrl;
+      bgMusic.title = this.data.albumname
     }
   },
   /*点击下一曲触发事件 */
@@ -144,7 +150,7 @@ Page({
       }
     }
     if(i==this.data.playList.length-1){
-      console.log("这是最后一首")
+      // console.log("这是最后一首")
     }else{
       this.getVkey(this.data.playSongs[i + 1])
       let albumname = this.data.playList[i + 1].data.songname;
@@ -157,9 +163,11 @@ Page({
         name: singer,
         alumnUrl: alumnUrl
       })
-      let musicUrl = `/pages/music/musicPlay?&mid=${this.data.musicmid}&strMediaMid=${this.data.strMediaMid}&alumn=${this.data.playList[i + 1].data.albummid}&albumname=${this.data.albumname}&name=${this.data.name}`
-      console.log(musicUrl)
+      let musicUrl = `/pages/music/musicPlay?mid=${this.data.musicmid}&strMediaMid=${this.data.strMediaMid}&alumn=${this.data.playList[i + 1].data.albummid}&albumname=${this.data.albumname}&name=${this.data.name}`
       getApp().globalData._musicUrl = musicUrl
+      console.log(alumnUrl)
+      bgMusic.title = this.data.albumname
+      getApp().globalData.alumnUrl=alumnUrl
     }
   },
   /*切换播放模式 */
@@ -183,35 +191,40 @@ Page({
     bgMusic.onEnded(()=>{
       console.log(this.data.mode)
       if (this.data.mode=='single'){
+        console.log("单曲循环")
         bgMusic.title = getApp().globalData.albumname,
           //判断进入播放器时当前播放的音乐跟点的是否一致，如果一直就不播放
-        bgMusic.src = this.data.musicUrl;
+        bgMusic.src = getApp().globalData.musicSrc;
       }else{
         this.onNext()
+        console.log("下一曲")
       } 
     })
-    bgMusic.onError(()=>{
-      const toast = Toast.loading({
-        duration: 0, // 持续展示 toast
-        forbidClick: true,
-        message: '网络错误,即将切换到下一曲'
-      });
-
-      let second = 3;
-      const timer = setInterval(() => {
-        second--;
-        if (second==0) {
-          clearInterval(timer);
-          // 手动清除 Toast
-          console.log("即将播放下一曲")
-          Toast.clear();
-          this.onNext()
-        }
-      }, 1000);
-      
-      
-    })
   },
+    musicErr(){
+      bgMusic.onError(() => {
+        const toast = Toast.loading({
+          duration: 0, // 持续展示 toast
+          forbidClick: true,
+          message: '网络错误,即将切换到下一曲'
+        });
+        getApp().globalData._on=false
+        this.setData({on:false})
+        let second = 3;
+        const timer = setInterval(() => {
+          second--;
+          if (second == 0) {
+            clearInterval(timer);
+            // 手动清除 Toast
+            console.log("即将播放下一曲")
+            Toast.clear();
+            this.onNext()
+          }
+        }, 1000);
+      })
+    },
+
+
   /*在播放列表点击播放 */
   playMusic_1(event) {
     let mid = event.currentTarget.dataset.mid;
@@ -239,6 +252,8 @@ Page({
       bgMusic.stop()
       getApp().globalData.playList.length=0;
       getApp().globalData.musicmid=null
+      getApp().globalData._on=false;
+      getApp().globalData.alumnUrl='';
       this.setData({
         playList:[],
       })
@@ -281,16 +296,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
+    getApp().globalData.albumname=options.albumname;
+    getApp().globalData.album=options.name;
     let mid=options.mid;
     let strMediaMid = options.strMediaMid;
     let alumn = options.alumn;
     this.musicEnd()
+    this.musicErr()
     this.getSongMsg(mid, strMediaMid, alumn)
     this.getVkey(mid)
     this.getMid()
     console.log(getApp().globalData.playList)
+    console.log(getApp().globalData.auto)
     this.setData({
-      mode:getApp().globalData.mode
+      mode:getApp().globalData.mode,
+      on:getApp().globalData.auto,
     })
   },
 
@@ -298,13 +319,15 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    this.setData({
+      auto: getApp().globalData.auto,
+    })
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
   },
 
   /**

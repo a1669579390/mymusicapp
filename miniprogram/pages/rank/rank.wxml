@@ -1,4 +1,4 @@
-<view>
+<view class="body">
   <text class="title">巅峰榜</text>
   <view class="bink">
     <block wx:for="{{rankList}}" wx:key="index">

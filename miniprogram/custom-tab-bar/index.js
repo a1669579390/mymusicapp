@@ -38,22 +38,24 @@ Component({
         on
       })
     },
+    ready:function(){
+    },
   },
-  methods: {   
-      switchTab(e) {
-        let musicUrl=getApp().globalData._musicUrl;
-        console.log(musicUrl)
+  methods: {  
+    switchTab_1(){
+      let musicUrl = getApp().globalData._musicUrl;
+      console.log(musicUrl)
+      if(musicUrl==''){
+        
+      }else{
+        wx.navigateTo({
+          url: musicUrl,
+        })
+      }    
+    },
+      switchTab(e) {     
         const data = e.currentTarget.dataset
         const url = data.path
-        if(data.index==1){
-          if(musicUrl==''){
-            console.log(11)
-          }else{
-            wx.navigateTo({
-              url: musicUrl,
-            })
-          }         
-        }
         this.setData({
           selected: data.index
         })

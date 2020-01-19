@@ -1,7 +1,7 @@
 /* pages/index/index.wxss */
 .body{
   width: 100%;
-  padding: 0 0 130rpx;
+  padding: 0 0 110rpx;
 }
 .first_bar,.second_bar{
   padding: 30rpx 0 0 0;
@@ -15,18 +15,8 @@
   padding: 0 0 0 30rpx;
   font-size: 35rpx;
 }
-/* 媒体查询针对屏幕尺寸375和414适配 */
-.hot_music_more{
-  display: flex;
-  justify-items: center;
-  padding: 10rpx 32rpx 0 0;
-}
-.hot_music_more text{
-  font-weight: 500;
-  font-size: 28rpx;
-}
  .hot_detail{
-  padding:40rpx 10rpx 0rpx 4rpx;
+  padding:8rpx 10rpx 0rpx 4rpx;
   display: flex;
   flex-wrap: wrap;
   width: 100%;
@@ -79,7 +69,7 @@
 /* 热门歌单样式 */
 .musices{
   white-space: nowrap;
-  padding:20rpx 12rpx 0 10rpx;
+  padding:20rpx 12rpx 20rpx 10rpx;
 }
 .every_musices{
   padding: 0 20rpx 0 0;

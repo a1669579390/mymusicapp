@@ -1,23 +1,9 @@
 <scroll-view>
 <view class="body"  wx:if="{{list.length!=0}}">
-<!-- 搜索框 -->
-<van-search
-  value="{{ value }}"
-  placeholder="搜索歌曲、歌手"
-  use-action-slot
-  bind:change="onChange"
-  bind:search="onSearch"
-  background="#fffff"
->
-</van-search>
 <!-- 热门歌曲 -->
 <view class="first_bar">
   <view class="hot_music">
     <text>热门歌曲</text>
-      <view class="hot_music_more">
-        <text>更多</text>
-        <van-icon name="arrow"></van-icon>
-      </view>
   </view>
   <!-- 推荐列表 -->
   <view class="hot_detail">
@@ -50,8 +36,8 @@
         {{listenCount_0[index]}}
         </view> 
       <van-image
-            width="200rpx"
-            height="200rpx"
+            width="220rpx"
+            height="220rpx"
             radius="10rpx"
             src="{{item.cover}}"
         ></van-image>
@@ -73,8 +59,8 @@
         {{listenCount_1[index]}}
         </view> 
       <van-image
-            width="200rpx"
-            height="200rpx"
+            width="220rpx"
+            height="220rpx"
             radius="10rpx"
             src="{{item.cover}}"
         ></van-image>

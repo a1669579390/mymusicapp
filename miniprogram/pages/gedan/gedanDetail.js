@@ -59,6 +59,12 @@ Page({
       musicmid: musicmid
     })
   },
+  /*点击歌单的播放按钮将所有音乐添加到播放列表 */
+  playAll(event) {
+    getApp().globalData.playList = this.data.list
+    let list=this.data.list
+    common.to_music(event, list)
+  },
   /**
    * 生命周期函数--监听页面加载
    */

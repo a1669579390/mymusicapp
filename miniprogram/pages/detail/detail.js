@@ -37,9 +37,11 @@ toPlay(event){
   common.to_music(event, list)
 },
 /*点击巅峰榜的播放按钮将所有音乐添加到播放列表 */
-playAll(){
+playAll(event){
   getApp().globalData.playList=this.data.list.songlist
   Toast.success('添加成功')
+  let list = this.data.list.songlist
+  common.to_music(event, list)
 },
   /**
    * 生命周期函数--监听页面加载

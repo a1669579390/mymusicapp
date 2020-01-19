@@ -10,7 +10,7 @@
     <text class="listName">{{list.topinfo.ListName}}</text>
     <text class="update-time">更新时间:{{list.update_time}}</text>
     <view class="button-size">
-      <van-button round color="linear-gradient(to right, #4bb0ff, #6149f6)" bind:click="playAll">
+      <van-button round color="linear-gradient(to right, #4bb0ff, #6149f6)" bind:click="playAll" data-mid="{{list.songlist[0].data.songmid}}" data-alumn="{{list.songlist[0].data.albummid}}" data-name="{{list.songlist[0].data.singer[0].name}}" data-albumname="{{list.songlist[0].data.songname}}" data-smm="{{list.songlist[0].data.strMediaMid}}" data-index="0">
         <image src="../../images/play.png" class="imgsize"></image>
       </van-button>
     </view>

@@ -3,16 +3,16 @@ App({
   globalData:{
     index:0,
     rankList:'',
+    auto:true,//控制暂停播放
     album:'',//当前歌手名字
     albumname:'',//当前专辑名字
     playList:[],//当前播放列表
     _musicmid:'',//当前播放音乐的mid
     palyIndex:0,//当前播放歌曲的index
     mode:'single',
-    _name:"123",
     _musicUrl:'',//存放当前正在播放的音乐路径
     _on:false,//控制专辑图的旋转
-    _alumnUrl:'',//存放当前正在播放的专辑图
+    alumnUrl:'',//存放当前正在播放的专辑图
   },
   getRank() {
     var that = this
@@ -66,7 +66,9 @@ App({
       configurable:true,
       enumerable:true,
       set:function(value){
+        console.log(value)
         this._musicmid=value;
+        
         method(value)
       },
       get:function(){
